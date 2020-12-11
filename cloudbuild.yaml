@@ -1,0 +1,13 @@
+  steps:
+- name: 'ubuntu'
+  args: ['-c', 'echo kms $$SECRET sm $$SMSECRET']
+  entrypoint: 'bash'
+  secret_env: ['SECRET', 'SMSECRET']
+availableSecrets:
+  inline:
+  - kmsKeyName: projects/jessie-test-274918/locations/global/keyRings/test-key/cryptoKeys/test-key
+    envMap:
+      SECRET: 'CiQAMeUBEWPUoAfHzcInjImT7gQtXEotQGDUG70HFAJo7LCphqYSMgDqrPxbsiGSmoyW5t6Fk11SnIyAJI9Gl6cc/6wI0Yg2tVrRpeZehIjwcbG4t7MRHG0U'
+  secretManager:
+  - versionName: projects/jessie-test-274918/secrets/test-secret/versions/latest
+    env: SMSECRET
